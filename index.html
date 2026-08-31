@@ -3,773 +3,675 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Midwest Electric Railway — Mount Pleasant, Iowa</title>
+<title>Midwest Electric Railway — The Loop Line</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#1c2b23;
-    --ink-soft:#2e2018;
-    --cream:#f5efe1;
-    --cream-2:#ece3cf;
-    --red:#a13a2e;
-    --amber:#c98a2e;
-    --steel:#5f6f63;
-    --steel-light:#8a9a8c;
-    --line:rgba(28,43,35,0.16);
-    --line-strong:rgba(28,43,35,0.32);
-    --shadow-fab:#d6cdb6;
+    --cream: #F2EDE0;
+    --panel: #FAF7EF;
+    --iron: #232220;
+    --iron-soft: #4A4640;
+    --red: #A8322A;
+    --red-deep: #7E241E;
+    --green: #2F4A3C;
+    --green-deep: #223729;
+    --brass: #C4922E;
+    --brass-bright: #D9A441;
+    --line: #D8CFB8;
+    --ok: #2F6B47;
+    --ok-bg: #E4EEE3;
+    --stop: #A8322A;
+    --stop-bg: #F3E3DF;
+    --shop: #B9791C;
+    --shop-bg: #F5E9D3;
+    --store: #5B5A54;
+    --store-bg: #E7E4D9;
   }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
   body{
-    margin:0;
     background:var(--cream);
-    color:var(--ink);
-    font-family:'Source Serif 4', Georgia, serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,.disp{
-    font-family:'Oswald', 'Arial Narrow', sans-serif;
-    text-transform:uppercase;
-    letter-spacing:0.04em;
-    color:var(--ink);
-    margin:0;
-  }
-  .mono{
-    font-family:'IBM Plex Mono', monospace;
-  }
-  a{color:inherit;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:1160px;margin:0 auto;padding:0 28px;}
-
-  /* ---------- top rail marquee ---------- */
-  .marquee-rail{
-    background:var(--ink);
-    color:var(--cream-2);
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    letter-spacing:0.08em;
-    padding:7px 0;
-    overflow:hidden;
-    white-space:nowrap;
-    border-bottom:3px solid var(--red);
-  }
-  .marquee-rail span{padding:0 2em;opacity:0.85;}
-
-  /* ---------- header ---------- */
-  header.top{
-    padding:26px 0 20px;
-    border-bottom:1px solid var(--line-strong);
-    background-color:var(--cream);
-    background-image:repeating-linear-gradient(90deg, transparent, transparent 78px, var(--line) 78px, var(--line) 79px);
-    position:sticky;
-    top:0;
-    z-index:40;
-    box-shadow:0 12px 24px -18px rgba(28,43,35,0.4);
-  }
-  .brandrow{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;}
-  .brandmark{display:flex;align-items:center;gap:16px;}
-  .dot-signal{
-    width:14px;height:14px;border-radius:50%;
-    background:var(--red);
-    box-shadow:0 0 0 3px rgba(161,58,46,0.18);
-    flex:none;
-  }
-  .brandmark h1{font-size:clamp(28px,4.4vw,46px);line-height:1;}
-  .brandmark .sub{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    letter-spacing:0.14em;
-    color:var(--steel);
-    margin-top:6px;
-  }
-  nav.mainnav{
-    display:flex;gap:26px;flex-wrap:wrap;
-    font-family:'Oswald',sans-serif;
-    font-size:13px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-  }
-  nav.mainnav a{
-    text-decoration:none;
-    color:var(--steel);
-    border-bottom:2px solid transparent;
-    padding-bottom:3px;
-    transition:color .15s, border-color .15s;
-  }
-  nav.mainnav a:hover{color:var(--red);border-color:var(--red);}
-
-  /* ---------- hero ---------- */
-  .hero{
-    position:relative;
-    background:var(--ink);
-    color:var(--cream);
-    overflow:hidden;
-  }
-  .hero-grid{
-    display:grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    align-items:stretch;
-  }
-  .hero-copy{
-    padding:64px 48px 64px 28px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:22px;
-  }
-  .hero-eyebrow{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    letter-spacing:0.2em;
-    color:var(--amber);
-  }
-  .hero h2{
-    font-size:clamp(34px,5.2vw,64px);
-    line-height:1.02;
-    color:var(--cream);
-  }
-  .hero h2 em{
-    font-style:normal;
-    color:var(--amber);
-  }
-  .hero p.lede{
-    font-family:'Source Serif 4',serif;
-    font-size:18px;
-    color:var(--cream-2);
-    max-width:46ch;
-  }
-  .hero-stats{
-    display:flex;gap:14px;flex-wrap:wrap;
-    margin-top:6px;
-    padding-top:22px;
-  }
-  .hero-stats .stat{
-    background:rgba(245,239,225,0.06);
-    border:1px solid rgba(245,239,225,0.14);
-    border-radius:10px;
-    padding:14px 20px;
-    box-shadow:inset 0 1px 0 rgba(245,239,225,0.08), 0 8px 20px -14px rgba(0,0,0,0.6);
-  }
-  .hero-stats .stat b{
-    display:block;font-family:'Oswald',sans-serif;font-size:26px;color:var(--cream);
-  }
-  .hero-stats .stat span{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--steel-light);
-    text-transform:uppercase;
-  }
-  .hero-photo{
-    position:relative;
-  }
-  .hero-photo img{
-    width:100%;height:100%;object-fit:cover;
-    filter:saturate(1.02) contrast(1.02);
-  }
-  .hero-photo::after{
-    content:"";
-    position:absolute;inset:0;
-    background:linear-gradient(90deg, rgba(28,43,35,0.55), rgba(28,43,35,0) 30%);
-  }
-  .hero-cap{
-    position:absolute;left:20px;bottom:18px;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;letter-spacing:0.05em;
-    color:var(--cream-2);
-    background:rgba(28,43,35,0.55);
-    padding:5px 10px;
+    color:var(--iron);
+    font-family:'Archivo', sans-serif;
+    line-height:1.5;
   }
 
-  @media (max-width:820px){
-    .hero-grid{grid-template-columns:1fr;}
-    .hero-photo{height:260px;order:-1;}
-    .hero-copy{padding:36px 22px;}
-  }
-
-  /* ---------- section shell ---------- */
-  section{padding:80px 0;}
-  .section-head{
-    display:flex;align-items:baseline;gap:18px;margin-bottom:42px;flex-wrap:wrap;
-  }
-  .section-head .num{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:13px;color:var(--steel-light);
-  }
-  .section-head h2{font-size:clamp(24px,3.2vw,36px);}
-  .section-rule{flex:1;min-width:60px;height:1px;background:var(--line-strong);}
-  .kicker{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;letter-spacing:0.14em;
-    color:var(--red);
-    text-transform:uppercase;
-    margin-bottom:10px;
-    display:block;
-  }
-  .lead-text{max-width:70ch;font-size:17px;color:var(--ink-soft);}
-
-  /* ---------- intro strip ---------- */
-  .intro{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .intro-grid{display:grid;grid-template-columns: 1.3fr 1fr;gap:48px;align-items:center;}
-  .intro-grid img{
-    border:1px solid var(--line-strong);
-    border-radius:10px;
-    box-shadow:0 12px 28px -18px rgba(28,43,35,0.4);
-  }
-  @media (max-width:820px){.intro-grid{grid-template-columns:1fr;}}
-
-  /* ---------- fleet roster ---------- */
-  .roster-list{display:flex;flex-direction:column;gap:22px;}
-  .car-row{
-    display:grid;
-    grid-template-columns: 190px 1fr;
-    gap:36px;
-    padding:30px 32px;
-    background:linear-gradient(180deg, rgba(255,253,247,0.9), rgba(255,253,247,0.55));
-    border:1px solid var(--line);
-    border-left:4px solid var(--steel-light);
-    border-radius:10px;
-    box-shadow:0 1px 2px rgba(28,43,35,0.04), 0 10px 24px -16px rgba(28,43,35,0.28);
-    transition:box-shadow .2s ease, transform .2s ease, border-color .2s ease;
-  }
-  .car-row:hover{
-    box-shadow:0 2px 4px rgba(28,43,35,0.06), 0 18px 32px -18px rgba(28,43,35,0.34);
-    transform:translateY(-2px);
-  }
-  .car-row.st-row-running{border-left-color:#3b6d11;}
-  .car-row.st-row-restoring{border-left-color:var(--amber);}
-  .car-row.st-row-down{border-left-color:var(--red);}
-  .car-row.st-row-static{border-left-color:var(--steel);}
-  .car-plate{
-    display:flex;flex-direction:column;gap:12px;
-  }
-  .plate-number{
-    font-family:'Oswald',sans-serif;
-    font-size:46px;
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
     font-weight:600;
-    line-height:0.9;
+    letter-spacing:-0.01em;
+    color:var(--iron);
   }
-  .plate-badge{
-    display:inline-flex;align-items:center;gap:7px;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:10.5px;letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--steel);
-    background:rgba(255,255,255,0.6);
-    border:1px solid var(--line-strong);
-    border-radius:20px;
-    padding:5px 11px;
-    width:fit-content;
-    box-shadow:0 1px 2px rgba(28,43,35,0.05);
-    transition:color .2s ease, border-color .2s ease;
+
+  a{ color:inherit; }
+
+  img{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 28px;
   }
-  .plate-badge .swatch{
-    width:8px;height:8px;border-radius:50%;flex:none;
-    box-shadow:0 0 0 3px rgba(0,0,0,0.08);
-    transition:background .2s ease;
-  }
-  .car-body{display:grid;grid-template-columns: 1fr 260px;gap:28px;}
-  .car-text h3{font-size:19px;margin-bottom:6px;}
-  .car-meta{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11.5px;color:var(--steel);
+
+  /* ---------- Top strip ---------- */
+  .topline{
+    background:var(--iron);
+    color:var(--cream);
+    font-size:13px;
     letter-spacing:0.02em;
-    margin-bottom:14px;
-    display:flex;gap:16px;flex-wrap:wrap;
   }
-  .car-meta b{color:var(--ink-soft);font-weight:500;}
-  .car-text p{font-size:15.5px;color:var(--ink-soft);margin:0;}
-  .car-text p.crew-note{
-    margin-top:10px;font-style:italic;color:var(--steel);font-size:14.5px;
+  .topline .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:9px;
+    padding-bottom:9px;
+    flex-wrap:wrap;
+    gap:6px;
   }
-  .car-photo{position:relative;}
-  .car-photo img{
-    width:100%;height:190px;object-fit:cover;
-    border-radius:8px;
-    border:1px solid var(--line-strong);
-    box-shadow:0 6px 16px -10px rgba(28,43,35,0.4);
-  }
-  .car-photo figcaption{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:10.5px;color:var(--steel);
-    margin-top:8px;
-  }
-  @media (max-width:900px){
-    .car-row{grid-template-columns:1fr;gap:16px;padding:24px 22px;}
-    .car-body{grid-template-columns:1fr;}
-    .plate-number{font-size:36px;}
-  }
+  .topline .sep{ opacity:0.45; margin:0 10px; }
 
-  /* status colors */
-  .st-running .swatch{background:#3b6d11;}
-  .st-running{color:#3b6d11;border-color:#3b6d1155;}
-  .st-restoring .swatch{background:var(--amber);}
-  .st-restoring{color:#8a5a12;border-color:#c98a2e55;}
-  .st-down .swatch{background:var(--red);}
-  .st-down{color:var(--red);border-color:#a13a2e55;}
-  .st-static .swatch{background:var(--steel);}
-
-  .live-note{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--steel-light);
-    margin-top:18px;display:flex;align-items:center;gap:8px;
-  }
-  .live-dot{width:7px;height:7px;border-radius:50%;background:var(--steel-light);flex:none;}
-  .live-dot.on{background:#3b6d11;}
-
-  /* ---------- gallery ---------- */
-  .gallery-grid{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:4px;
-  }
-  .gallery-grid figure{margin:0;position:relative;overflow:hidden;background:var(--ink);}
-  .gallery-grid img{
-    width:100%;height:230px;object-fit:cover;
-    filter:grayscale(0.08);
-    transition:transform .5s ease, filter .3s ease;
-  }
-  .gallery-grid figure:hover img{transform:scale(1.05);filter:grayscale(0);}
-  .gallery-grid figcaption{
-    position:absolute;left:0;right:0;bottom:0;
-    padding:10px 12px;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;color:var(--cream);
-    background:linear-gradient(0deg, rgba(28,43,35,0.85), rgba(28,43,35,0));
-  }
-  @media (max-width:820px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:520px){.gallery-grid{grid-template-columns:1fr;}}
-
-  /* ---------- volunteer / restoration ---------- */
-  .split{
-    display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
-  }
-  .split img{
-    border:1px solid var(--line-strong);
-    border-radius:10px;
-    box-shadow:0 12px 28px -18px rgba(28,43,35,0.4);
-  }
-  @media (max-width:820px){.split{grid-template-columns:1fr;}}
-  .fact-list{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;}
-  .fact-list li{
-    display:flex;gap:14px;font-size:15.5px;color:var(--ink-soft);
-    padding-bottom:14px;border-bottom:1px solid var(--line);
-  }
-  .fact-list li:last-child{border-bottom:none;}
-  .fact-list .tick{
-    font-family:'IBM Plex Mono',monospace;color:var(--red);font-size:13px;flex:none;padding-top:2px;
-  }
-
-  /* ---------- visit / info ---------- */
-  .info-band{background:var(--cream-2);border-top:1px solid var(--line);}
-  .info-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-  }
-  .info-cell{
-    background:linear-gradient(180deg, rgba(255,253,247,0.95), rgba(255,253,247,0.7));
-    padding:28px 26px;
-    border:1px solid var(--line);
-    border-radius:12px;
-    box-shadow:0 1px 2px rgba(28,43,35,0.04), 0 14px 28px -20px rgba(28,43,35,0.35);
-  }
-  .info-cell h3{
-    font-size:15px;margin-bottom:12px;
-    padding-bottom:10px;
+  /* ---------- Header ---------- */
+  header.site{
+    background:var(--panel);
     border-bottom:1px solid var(--line);
   }
-  .info-cell p{margin:0;font-size:14.5px;color:var(--ink-soft);}
-  .info-cell .mono-lg{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink);}
-  .map-cell{grid-column:1 / -1;}
-  .map-cell img{
-    width:100%;border-radius:8px;border:1px solid var(--line-strong);margin-top:14px;
+  .site .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:20px;
+    padding-bottom:20px;
   }
-  @media (max-width:820px){.info-grid{grid-template-columns:1fr;}}
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .brand-mark{
+    width:44px; height:44px;
+    border-radius:50%;
+    background:var(--green);
+    color:var(--cream);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:15px;
+    border:2px solid var(--brass);
+    flex-shrink:0;
+  }
+  .brand-text .name{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:19px;
+    line-height:1.1;
+  }
+  .brand-text .tag{
+    font-size:12px;
+    color:var(--iron-soft);
+    letter-spacing:0.03em;
+    margin-top:2px;
+  }
+  nav.site{
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    font-weight:600;
+  }
+  nav.site a{
+    text-decoration:none;
+    padding-bottom:3px;
+    border-bottom:2px solid transparent;
+  }
+  nav.site a:hover{ border-bottom-color:var(--brass); }
 
-  /* ---------- footer ---------- */
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:var(--iron);
+    overflow:hidden;
+  }
+  .hero img{
+    width:100%;
+    height:min(66vh, 560px);
+    object-fit:cover;
+    object-position:center 38%;
+    opacity:0.88;
+  }
+  .hero-fade{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(35,34,32,0.05) 0%, rgba(35,34,32,0.15) 45%, rgba(35,34,32,0.92) 100%);
+  }
+  .hero-content{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:44px 0 40px;
+  }
+  .hero-content .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .hero-title{
+    color:var(--cream);
+    font-size:clamp(34px, 5.2vw, 58px);
+    line-height:1.02;
+    max-width:640px;
+  }
+  .hero-sub{
+    color:#D9D2BE;
+    font-size:16px;
+    max-width:460px;
+    margin-top:14px;
+    line-height:1.55;
+  }
+  .hero-cta{
+    display:flex;
+    gap:12px;
+    flex-shrink:0;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 22px;
+    font-family:'Archivo',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    border-radius:3px;
+    text-decoration:none;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-brass{
+    background:var(--brass-bright);
+    color:var(--iron);
+    border-color:var(--brass-bright);
+  }
+  .btn-brass:hover{ transform:translateY(-1px); box-shadow:0 4px 14px rgba(217,164,65,0.35); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--cream);
+    border-color:rgba(242,237,224,0.5);
+  }
+  .btn-ghost:hover{ border-color:var(--cream); }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:64px 0; }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:32px;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:20px;
+  }
+  .section-head h2{ font-size:30px; }
+  .section-head p{
+    color:var(--iron-soft);
+    font-size:14.5px;
+    max-width:420px;
+  }
+
+  /* ---------- Status board ---------- */
+  #roster{ background:var(--panel); }
+
+  .board-legend{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    font-size:13px;
+    color:var(--iron-soft);
+  }
+  .board-legend span{ display:flex; align-items:center; gap:7px; }
+  .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .dot.in_service{ background:var(--ok); }
+  .dot.out_of_service{ background:var(--stop); }
+  .dot.maintenance{ background:var(--shop); }
+  .dot.storage{ background:var(--store); }
+
+  #roster-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:16px;
+  }
+
+  .car-card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .car-photo{
+    height:170px;
+    overflow:hidden;
+    position:relative;
+    background:var(--iron);
+  }
+  .car-photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+  }
+  .car-plate{
+    position:absolute;
+    top:10px; left:10px;
+    background:rgba(35,34,32,0.85);
+    color:var(--brass-bright);
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:13px;
+    padding:4px 10px;
+    border-radius:2px;
+    letter-spacing:0.03em;
+    border:1px solid rgba(217,164,65,0.5);
+  }
+  .car-body{
+    padding:16px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+  }
+  .car-body h3{
+    font-size:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:10px;
+  }
+  .car-note{
+    font-size:13px;
+    color:var(--iron-soft);
+    min-height:16px;
+  }
+  .car-updated{
+    font-size:11.5px;
+    color:#9A9384;
+    margin-top:auto;
+    padding-top:6px;
+    border-top:1px dashed var(--line);
+  }
+
+  .status-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    padding:5px 10px 5px 8px;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+  .status-pill::before{
+    content:'';
+    width:7px; height:7px;
+    border-radius:50%;
+  }
+  .status-pill.in_service{ background:var(--ok-bg); color:var(--ok); }
+  .status-pill.in_service::before{ background:var(--ok); }
+  .status-pill.out_of_service{ background:var(--stop-bg); color:var(--stop); }
+  .status-pill.out_of_service::before{ background:var(--stop); }
+  .status-pill.maintenance{ background:var(--shop-bg); color:var(--shop); }
+  .status-pill.maintenance::before{ background:var(--shop); }
+  .status-pill.storage{ background:var(--store-bg); color:var(--store); }
+  .status-pill.storage::before{ background:var(--store); }
+
+  #roster-loading, #roster-error{
+    padding:40px 0;
+    text-align:center;
+    color:var(--iron-soft);
+    font-size:14px;
+  }
+  #roster-error{ display:none; }
+
+  /* ---------- About / history ---------- */
+  #about .wrap{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:start;
+  }
+  #about p{
+    font-size:15.5px;
+    color:#3C3A35;
+    margin-bottom:16px;
+    max-width:56ch;
+  }
+  #about .figure{
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  #about .figure img{ width:100%; }
+  #about .figure figcaption{
+    background:var(--iron);
+    color:#C9C2AE;
+    font-size:12px;
+    padding:9px 14px;
+  }
+
+  @media (max-width:840px){
+    #about .wrap{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- Fleet gallery ---------- */
+  #fleet{ background:var(--panel); }
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+  }
+  .gallery figure{
+    position:relative;
+    border-radius:4px;
+    overflow:hidden;
+    aspect-ratio:4/3;
+    border:1px solid var(--line);
+  }
+  .gallery img{
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform .4s ease;
+  }
+  .gallery figure:hover img{ transform:scale(1.05); }
+  .gallery figcaption{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:10px 12px;
+    background:linear-gradient(180deg, transparent, rgba(35,34,32,0.85));
+    color:var(--cream);
+    font-size:12.5px;
+    font-weight:600;
+  }
+  @media (max-width:760px){
+    .gallery{ grid-template-columns:repeat(2, 1fr); }
+  }
+
+  /* ---------- Visit / plan ---------- */
+  #visit .wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  .visit-list{
+    list-style:none;
+  }
+  .visit-list li{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:16px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .visit-list li:first-child{ border-top:1px solid var(--line); }
+  .visit-list dt{
+    font-weight:700;
+    color:var(--iron-soft);
+    font-size:12.5px;
+    letter-spacing:0.03em;
+  }
+  #visit .figure{
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  #visit .figure img{ width:100%; }
+  @media (max-width:840px){
+    #visit .wrap{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- Footer ---------- */
   footer{
-    background:var(--ink);color:var(--cream-2);
-    padding:44px 0 32px;
+    background:var(--iron);
+    color:#B9B3A0;
+    padding:40px 0 28px;
     font-size:13px;
   }
-  footer .foot-grid{
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;
-    border-bottom:1px solid rgba(245,239,225,0.18);
-    padding-bottom:26px;margin-bottom:20px;
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
   }
-  footer h4{
-    font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:0.06em;
-    color:var(--cream);margin-bottom:10px;text-transform:uppercase;
-  }
-  footer .foot-note{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--steel-light);
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
-  }
-  footer a{text-decoration:none;color:var(--cream-2);}
-  footer a:hover{color:var(--amber);}
+  footer a{ text-decoration:none; color:#D9A441; }
+  footer a:hover{ text-decoration:underline; }
 
-  ::selection{background:var(--amber);color:var(--ink);}
+  @media (max-width:600px){
+    nav.site{ display:none; }
+    .hero-content .wrap{ flex-direction:column; align-items:flex-start; }
+  }
 </style>
 </head>
 <body>
 
-<div class="marquee-rail" aria-hidden="true">
-  <span>MERA · STANDARD GAUGE 4' 8½" · 2.5 MILE LOOP</span>
-  <span>MT. PLEASANT, IOWA · EST. 1971</span>
-  <span>ALL EQUIPMENT VOLUNTEER MAINTAINED</span>
-  <span>MERA · STANDARD GAUGE 4' 8½" · 2.5 MILE LOOP</span>
-  <span>MT. PLEASANT, IOWA · EST. 1971</span>
-  <span>ALL EQUIPMENT VOLUNTEER MAINTAINED</span>
+<div class="topline">
+  <div class="wrap">
+    <span>Threshers Grounds · Live steam &amp; trolley operations</span>
+    <span><span class="sep">|</span>Open during scheduled events — see hours below</span>
+  </div>
 </div>
 
-<header class="top">
-  <div class="wrap brandrow">
-    <div class="brandmark">
-      <span class="dot-signal" aria-hidden="true"></span>
-      <div>
-        <h1>Midwest Electric Railway</h1>
-        <div class="sub">MERA · Reporting Mark MERA · Old Threshers Grounds, Mt. Pleasant, IA</div>
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-mark">MER</div>
+      <div class="brand-text">
+        <div class="name">Midwest Electric Railway</div>
+        <div class="tag">The Loop Line</div>
       </div>
     </div>
-    <nav class="mainnav">
-      <a href="#fleet">The fleet</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#volunteer">Volunteers</a>
+    <nav class="site">
+      <a href="#roster">Car Status</a>
+      <a href="#about">History</a>
+      <a href="#fleet">Fleet</a>
       <a href="#visit">Visit</a>
     </nav>
   </div>
 </header>
 
-<section class="hero" style="padding:0;">
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <span class="hero-eyebrow">A volunteer trolley line, kept running since 1971</span>
-      <h2>The wire is<br>still <em>hot.</em></h2>
-      <p class="lede">Nine historic streetcars, one 2.5-mile loop of standard-gauge track, and a crew of volunteers who rebuild what a century of service wears down — every year, entirely by hand.</p>
-      <div class="hero-stats">
-        <div class="stat"><b>1971</b><span>Line opened</span></div>
-        <div class="stat"><b>2.5 mi</b><span>Loop around the grounds</span></div>
-        <div class="stat"><b>9</b><span>Cars in the collection</span></div>
-        <div class="stat"><b>3</b><span>Continents of origin</span></div>
+<section class="hero">
+  <img src="hero-signaltower.jpg" alt="Cars 1779 and the Special waiting at the signal tower in golden evening light">
+  <div class="hero-fade"></div>
+  <div class="hero-content">
+    <div class="wrap">
+      <div>
+        <h1 class="hero-title">Riding the wire since the streetcar era.</h1>
+        <p class="hero-sub">A working collection of restored trolleys and interurban cars, operated by volunteers on original track. Every car you see actually runs.</p>
+      </div>
+      <div class="hero-cta">
+        <a href="#roster" class="btn btn-brass">Check car status</a>
+        <a href="#visit" class="btn btn-ghost">Plan a visit</a>
       </div>
     </div>
-    <div class="hero-photo">
-      <img src="images/hero-signaltower.jpg" alt="Trolleys at the signal tower depot in evening light">
-      <div class="hero-cap">Cars 1779 & 1718 · signal tower, Old Threshers Grounds</div>
+  </div>
+</section>
+
+<section id="roster">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Today's roster</h2>
+        <p>Live status for each car, updated by the car barn crew. Refreshes automatically.</p>
+      </div>
+      <div class="board-legend">
+        <span><i class="dot in_service"></i>In service</span>
+        <span><i class="dot maintenance"></i>Shop</span>
+        <span><i class="dot out_of_service"></i>Out of service</span>
+        <span><i class="dot storage"></i>Storage</span>
+      </div>
     </div>
+
+    <div id="roster-loading">Reading the car barn board…</div>
+    <div id="roster-error">Couldn't reach the status board right now. Showing the last known roster isn't available offline — please check back shortly.</div>
+    <div id="roster-grid"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div>
+      <h2 style="font-size:30px; margin-bottom:22px;">A short history of the line</h2>
+      <p>The Midwest Electric Railway began as a volunteer effort to save cars that streetcar and interurban companies across the region were sending to the scrapper. What started with a single flatcar and a few hundred feet of borrowed track has grown into a working railway, rebuilt piece by piece on original narrow-gauge right-of-way.</p>
+      <p>Every car in the fleet earned its place here the hard way. Some, like <strong>Car 381</strong>, spent decades as a fixed display before crews returned it to running condition. Others, like the wooden line car <strong>3279</strong>, survive specifically because they were too useful to scrap — line cars strung and maintained the overhead wire that made the whole system possible.</p>
+      <p>The railway operates on Threshers show grounds during scheduled events, when the car barn crew brings cars out, tests them on the loop, and runs public rides on the same rail the original interurban lines once used.</p>
+    </div>
+    <figure class="figure">
+      <img src="car1100-trolleybarn.jpg" alt="Line car 1100 outside the trolley barn, loaded with lumber for track work">
+      <figcaption>Line car 1100 outside the Trolley Barn, loaded for a work run.</figcaption>
+    </figure>
   </div>
 </section>
 
 <section id="fleet">
   <div class="wrap">
     <div class="section-head">
-      <span class="num">01</span>
-      <h2>The fleet</h2>
-      <div class="section-rule"></div>
+      <div>
+        <h2>The fleet</h2>
+        <p>A working sample of the cars you may see running the loop.</p>
+      </div>
     </div>
-    <p class="lead-text">Every car below is volunteer-maintained and volunteer-operated. Status is updated by the crew directly from the barn — refresh to see what's changed today.</p>
-
-    <div class="roster-list" id="rosterList">
-
-      <div class="car-row st-row-running" data-car-id="1718-1779">
-        <div class="car-plate">
-          <div class="plate-number">1718</div>
-          <span class="plate-badge st-running"><span class="swatch"></span><span class="badge-text">In service</span></span>
-        </div>
-        <div class="car-body">
-          <div class="car-text">
-            <h3>Cars 1718 &amp; 1779</h3>
-            <div class="car-meta"><span><b>Origin:</b> Rio de Janeiro</span><span><b>Type:</b> Open-air excursion car</span></div>
-            <p>Open-sided cars built for Rio's tropical climate, now running the loop on warm weekends and special excursions.</p>
-            <p class="crew-note note-text"></p>
-          </div>
-          <figure class="car-photo">
-            <img src="images/car1718-hillside.jpg" alt="Car 1718 running along the hillside track, full of passengers">
-            <figcaption>Car 1718 on the hillside grade</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <div class="car-row st-row-down" data-car-id="9">
-        <div class="car-plate">
-          <div class="plate-number">9</div>
-          <span class="plate-badge st-down"><span class="swatch"></span><span class="badge-text">Out of service</span></span>
-        </div>
-        <div class="car-body">
-          <div class="car-text">
-            <h3>Car 9</h3>
-            <div class="car-meta"><span><b>Origin:</b> Southern Iowa Railway</span><span><b>Type:</b> The line's flagship</span></div>
-            <p>The fleet's signature orange car and a crowd favorite at every Reunion.</p>
-            <p class="crew-note note-text"></p>
-          </div>
-          <figure class="car-photo">
-            <img src="images/car9-orange.jpg" alt="Car 9, orange streetcar, on the loop">
-            <figcaption>Car 9 on the loop</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <div class="car-row st-row-static" data-car-id="320">
-        <div class="car-plate">
-          <div class="plate-number">320</div>
-          <span class="plate-badge st-static"><span class="swatch"></span><span class="badge-text">Static display</span></span>
-        </div>
-        <div class="car-body">
-          <div class="car-text">
-            <h3>Car 320</h3>
-            <div class="car-meta"><span><b>Origin:</b> Chicago, Aurora &amp; Elgin</span><span><b>Type:</b> Interurban coach</span></div>
-            <p>A deep maroon interurban car from the CA&amp;E line, on static display for visitors to walk through.</p>
-            <p class="crew-note note-text"></p>
-          </div>
-          <figure class="car-photo">
-            <img src="images/car320-red.jpg" alt="Car 320, maroon interurban coach">
-            <figcaption>Car 320, on display</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <div class="car-row st-row-running" data-car-id="1100">
-        <div class="car-plate">
-          <div class="plate-number">1100</div>
-          <span class="plate-badge st-running"><span class="swatch"></span><span class="badge-text">In service</span></span>
-        </div>
-        <div class="car-body">
-          <div class="car-text">
-            <h3>Car 1100</h3>
-            <div class="car-meta"><span><b>Type:</b> Motor flat car</span></div>
-            <p>The line's workhorse — hauls lumber, rail, and whatever else a restoration project needs, straight out of the trolley barn.</p>
-            <p class="crew-note note-text"></p>
-          </div>
-          <figure class="car-photo">
-            <img src="images/car1100-trolleybarn.jpg" alt="Motor flat car 1100 loaded with lumber outside the trolley barn">
-            <figcaption>1100 loading out of the barn</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <div class="car-row st-row-restoring" data-car-id="381">
-        <div class="car-plate">
-          <div class="plate-number">381</div>
-          <span class="plate-badge st-restoring"><span class="swatch"></span><span class="badge-text">Awaiting restoration</span></span>
-        </div>
-        <div class="car-body">
-          <div class="car-text">
-            <h3>Car 381</h3>
-            <div class="car-meta"><span><b>Origin:</b> Waterloo, Cedar Falls &amp; Northern</span><span><b>Type:</b> Interurban coach</span></div>
-            <p>A W.C.F.&amp;N. car in its classic orange and cream, currently between restoration phases.</p>
-            <p class="crew-note note-text"></p>
-          </div>
-          <figure class="car-photo">
-            <img src="images/car381-restored.jpg" alt="Car 381 in orange and cream livery">
-            <figcaption>Car 381, W.C.F.&amp;N. livery</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <div class="car-row st-row-running" data-car-id="1945-1811">
-        <div class="car-plate">
-          <div class="plate-number">1945</div>
-          <span class="plate-badge st-running"><span class="swatch"></span><span class="badge-text">In service</span></span>
-        </div>
-        <div class="car-body">
-          <div class="car-text">
-            <h3>Cars 1945 &amp; 1811</h3>
-            <div class="car-meta"><span><b>Origin:</b> Milan</span><span><b>Type:</b> European tram cars</span></div>
-            <p>A pair of Italian trams that made their way from Milan's streets to Iowa's cornfields — still running the Log Village run.</p>
-            <p class="crew-note note-text"></p>
-          </div>
-          <figure class="car-photo">
-            <img src="images/car1945-red.jpg" alt="Car 1945, red Milan tram, bound for Log Village">
-            <figcaption>Car 1945, bound for Log Village</figcaption>
-          </figure>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="live-note">
-      <span class="live-dot" id="liveDot"></span>
-      <span id="liveStatusText">Loading live status…</span>
+    <div class="gallery">
+      <figure><img src="car1779-yellow-barn.jpg" alt="Car 1779 outside the trolley barn"><figcaption>Car 1779 — open-bench streetcar</figcaption></figure>
+      <figure><img src="car1718-hillside.jpg" alt="Car 1718 running the hillside grade"><figcaption>Car 1718 — open excursion car</figcaption></figure>
+      <figure><img src="car1945-red.jpg" alt="Car 1945, red interurban car"><figcaption>Car 1945 — enclosed interurban</figcaption></figure>
+      <figure><img src="car381-restored.jpg" alt="Car 381 restored, orange and cream livery"><figcaption>Car 381 — W.C.F. &amp; N. R.R.</figcaption></figure>
+      <figure><img src="car9-orange.jpg" alt="Car 9, Southern Iowa Railway orange livery"><figcaption>Car 9 — Southern Iowa Railway</figcaption></figure>
+      <figure><img src="car1811-logvillage.jpg" alt="Car 1811, yellow, bound for Log Village"><figcaption>Car 1811 — Log Village run</figcaption></figure>
+      <figure><img src="car320-red.jpg" alt="Car 320, maroon parlor-style car"><figcaption>Car 320 — parlor car</figcaption></figure>
+      <figure><img src="car3279-wood-lineman.jpg" alt="Car 3279, wooden line car with lineman on roof"><figcaption>Car 3279 — wooden line car</figcaption></figure>
+      <figure><img src="car1100-barn-load.jpg" alt="Line car 1100 loaded with lumber"><figcaption>Line car 1100 — MOW flat</figcaption></figure>
     </div>
   </div>
 </section>
 
-<section id="gallery" class="intro">
+<section id="visit">
   <div class="wrap">
-    <div class="section-head">
-      <span class="num">02</span>
-      <h2>From the archives</h2>
-      <div class="section-rule"></div>
+    <div>
+      <h2 style="font-size:30px; margin-bottom:22px;">Plan your visit</h2>
+      <dl class="visit-list">
+        <li><dt>Where</dt><dd>Threshers show grounds — Trolley Barn &amp; Midwest Central Depot. See the park map for the trolley loop, marked in red, and boarding stops at the Depot and Log Village.</dd></li>
+        <li><dt>When</dt><dd>Cars run during scheduled Threshers events. Check the board above before you come out — a car listed "in service" is confirmed running that day.</dd></li>
+        <li><dt>Boarding</dt><dd>Board at the Midwest Central Depot or the Trolley Barn stop. Cars loop out toward Log Village and back.</dd></li>
+        <li><dt>Crew</dt><dd>The railway is entirely volunteer-run — from motormen to the line car crew stringing wire. Ask a crew member about any car on the roster.</dd></li>
+      </dl>
     </div>
-    <p class="lead-text">A few more scenes from the barn, the shops, and the line — past and present.</p>
-  </div>
-  <div class="gallery-grid" style="margin-top:36px;">
-    <figure>
-      <img src="images/car-open-special.jpg" alt="Open-air special excursion car full of riders">
-      <figcaption>Special excursion run</figcaption>
+    <figure class="figure">
+      <img src="park-map.jpg" alt="Park map showing the trolley loop route, marked in red, connecting the Depot and Trolley Barn to Log Village">
     </figure>
-    <figure>
-      <img src="images/car1779-yellow-barn.jpg" alt="Car 1779 in yellow livery by the barn">
-      <figcaption>Car 1779, an earlier livery</figcaption>
-    </figure>
-    <figure>
-      <img src="images/car3279-wood-lineman.jpg" alt="Line car 3279 with a crew member working overhead wire">
-      <figcaption>Line car 3279, wire maintenance</figcaption>
-    </figure>
-    <figure>
-      <img src="images/car1100-barn-load.jpg" alt="Motor flat car 1100 loaded with fresh lumber">
-      <figcaption>1100, hauling fresh lumber</figcaption>
-    </figure>
-    <figure>
-      <img src="images/car381-cemetery.jpg" alt="Car 381 on an earlier static display pedestal">
-      <figcaption>Car 381, before coming to MERA</figcaption>
-    </figure>
-    <figure>
-      <img src="images/car1811-logvillage.jpg" alt="Milan tram car bound for Log Village">
-      <figcaption>Bound for Log Village</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section id="volunteer">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="num">03</span>
-      <h2>Kept running by volunteers</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="split">
-      <ul class="fact-list">
-        <li><span class="tick">—</span>Every car on this page is maintained entirely by volunteer crew, on weekends and evenings.</li>
-        <li><span class="tick">—</span>Restoration work ranges from wiring and trucks to full interior rebuilds.</li>
-        <li><span class="tick">—</span>New volunteers are always welcome, no experience required — just curiosity and steady hands.</li>
-        <li><span class="tick">—</span>The fleet status above is kept current by the crew directly from the barn, no office required.</li>
-      </ul>
-      <img src="images/car1100-barn-load.jpg" alt="Volunteer crew loading lumber onto motor flat car 1100">
-    </div>
-  </div>
-</section>
-
-<section id="visit" class="info-band">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="num">04</span>
-      <h2>Plan a visit</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="info-grid">
-      <div class="info-cell">
-        <h3>Where</h3>
-        <p class="mono-lg">Old Threshers Grounds<br>Mount Pleasant, Iowa</p>
-      </div>
-      <div class="info-cell">
-        <h3>Track</h3>
-        <p>Standard gauge, 4' 8½" — a 2.5-mile loop around the grounds.</p>
-      </div>
-      <div class="info-cell">
-        <h3>Best time to ride</h3>
-        <p>Check the fleet status above before you come — it reflects what's actually running that day.</p>
-      </div>
-      <div class="info-cell map-cell">
-        <h3>Grounds map</h3>
-        <p>The trolley depot and barn are marked near the center of the grounds, off Threshers Road.</p>
-        <img src="images/park-map.jpg" alt="Map of the Old Threshers Grounds showing the trolley depot and barn">
-      </div>
-    </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <h4>Midwest Electric Railway</h4>
-        <p style="max-width:34ch;color:var(--steel-light);font-size:13px;">A volunteer-run trolley line at the Old Threshers Grounds, Mount Pleasant, Iowa. Running since 1971.</p>
-      </div>
-      <div>
-        <h4>On this site</h4>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <a href="#fleet">The fleet</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#volunteer">Volunteers</a>
-          <a href="#visit">Visit</a>
-        </div>
-      </div>
-    </div>
-    <div class="foot-note wrap" style="padding:0;">
-      <span>© MERA — Midwest Electric Railway</span>
-      <span>Fleet status updates live from the crew panel</span>
-    </div>
+    <span>Midwest Electric Railway — operated by volunteers.</span>
+    <span><a href="admin.html">Crew status board</a></span>
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-(function(){
-  // ---- JSONHosting.com config — paste your Bin ID here after admin panel creates it ----
-  var JSONHOSTING_BIN_ID = "PASTE_YOUR_BIN_ID_HERE";
-  var JSONHOSTING_API = "https://jsonhosting.com/api/json";
-  // ------------------------------------------------------------------------------------
+  const SUPABASE_URL = "https://xgbsfetiqxlvtadqlvbc.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_TWUOraDqBr_8_3D4pDHOuw_TKmhjT6u";
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  var STATUS_LABELS = {
-    running:   { text: "In service",            rowClass: "st-row-running",   badgeClass: "st-running" },
-    restoring: { text: "Awaiting restoration",   rowClass: "st-row-restoring", badgeClass: "st-restoring" },
-    down:      { text: "Out of service",         rowClass: "st-row-down",      badgeClass: "st-down" },
-    static:    { text: "Static display",         rowClass: "st-row-static",    badgeClass: "st-static" }
+  const STATUS_LABEL = {
+    in_service: "In service",
+    out_of_service: "Out of service",
+    maintenance: "In the shop",
+    storage: "In storage"
   };
-  var ALL_ROW_CLASSES = ["st-row-running","st-row-restoring","st-row-down","st-row-static"];
-  var ALL_BADGE_CLASSES = ["st-running","st-restoring","st-down","st-static"];
 
-  var liveDot = document.getElementById("liveDot");
-  var liveStatusText = document.getElementById("liveStatusText");
+  const CAR_PHOTOS = {
+    "car-1779": "car1779-yellow-barn.jpg",
+    "car-1718": "car1718-hillside.jpg",
+    "car-1945": "car1945-red.jpg",
+    "car-381":  "car381-restored.jpg",
+    "car-320":  "car320-red.jpg",
+    "car-9":    "car9-orange.jpg",
+    "car-1811": "car1811-logvillage.jpg",
+    "car-1100": "car1100-trolleybarn.jpg",
+    "car-3279": "car3279-wood-lineman.jpg"
+  };
 
-  function applyStatusData(data){
-    document.querySelectorAll(".car-row[data-car-id]").forEach(function(row){
-      var carId = row.getAttribute("data-car-id");
-      var entry = data[carId];
-      if (!entry || !STATUS_LABELS[entry.status]) return;
-
-      var info = STATUS_LABELS[entry.status];
-
-      ALL_ROW_CLASSES.forEach(function(c){ row.classList.remove(c); });
-      row.classList.add(info.rowClass);
-
-      var badge = row.querySelector(".plate-badge");
-      ALL_BADGE_CLASSES.forEach(function(c){ badge.classList.remove(c); });
-      badge.classList.add(info.badgeClass);
-      badge.querySelector(".badge-text").textContent = info.text;
-
-      var noteEl = row.querySelector(".note-text");
-      if (entry.note){
-        noteEl.textContent = entry.note;
-        noteEl.style.display = "block";
-      } else {
-        noteEl.textContent = "";
-        noteEl.style.display = "none";
-      }
-    });
+  function timeAgo(iso){
+    const diffMs = Date.now() - new Date(iso).getTime();
+    const mins = Math.round(diffMs/60000);
+    if(mins < 1) return "just now";
+    if(mins < 60) return mins + " min ago";
+    const hrs = Math.round(mins/60);
+    if(hrs < 24) return hrs + " hr ago";
+    const days = Math.round(hrs/24);
+    return days + " day" + (days===1?"":"s") + " ago";
   }
 
-  async function syncFleetStatus(){
-    if (!JSONHOSTING_BIN_ID || JSONHOSTING_BIN_ID.indexOf("PASTE_") === 0){
-      liveStatusText.textContent = "Showing default status — live updates not yet connected.";
-      return;
-    }
-    try {
-      var res = await fetch(JSONHOSTING_API + "/" + JSONHOSTING_BIN_ID, { cache: "no-store" });
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      var data = await res.json();
-      applyStatusData(data);
-      liveDot.classList.add("on");
-      liveStatusText.textContent = "Live status from the crew panel.";
-    } catch (err){
-      console.log("Could not load live fleet status, showing defaults.", err);
-      liveStatusText.textContent = "Showing default status — couldn't reach the live feed just now.";
+  function renderRoster(cars){
+    const grid = document.getElementById('roster-grid');
+    grid.innerHTML = cars.map(car => `
+      <div class="car-card">
+        <div class="car-photo">
+          <img src="${CAR_PHOTOS[car.id] || 'hero-signaltower.jpg'}" alt="${car.name}" loading="lazy">
+          <div class="car-plate">No. ${car.number}</div>
+        </div>
+        <div class="car-body">
+          <h3>${car.name}
+            <span class="status-pill ${car.status}">${STATUS_LABEL[car.status] || car.status}</span>
+          </h3>
+          <div class="car-note">${car.note ? car.note : ''}</div>
+          <div class="car-updated">Updated ${timeAgo(car.updated_at)}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  async function loadRoster(){
+    const loading = document.getElementById('roster-loading');
+    const errorBox = document.getElementById('roster-error');
+    try{
+      const { data, error } = await supabase
+        .from('trolleys')
+        .select('*')
+        .order('number', { ascending:true });
+
+      if(error) throw error;
+
+      loading.style.display = 'none';
+      errorBox.style.display = 'none';
+      renderRoster(data);
+    }catch(err){
+      console.error(err);
+      loading.style.display = 'none';
+      errorBox.style.display = 'block';
     }
   }
 
-  document.querySelectorAll(".car-row .note-text").forEach(function(el){ el.style.display = "none"; });
-  syncFleetStatus();
-})();
+  loadRoster();
+
+  // Live updates: re-render whenever the crew changes a status
+  supabase
+    .channel('trolleys-public')
+    .on('postgres_changes', { event:'*', schema:'public', table:'trolleys' }, loadRoster)
+    .subscribe();
 </script>
 
 </body>
 </html>
+
