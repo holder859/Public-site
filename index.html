@@ -590,8 +590,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const SUPABASE_URL = "https://xgbsfetiqxlvtadqlvbc.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_dSio46m7K76j-ZDOlOkoAg_7iUCQE1i";
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_URL);
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhnYnNmZXRpcXhsdnRhZHFsdmJjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgxODI0ODQsImV4cCI6MjEwMzc1ODQ4NH0.iF38pUIFHp-50wlnkNnTpupqYtFTWEemSFPkkSwhtQ0";
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   const STATUS_LABEL = {
     in_service: "In service",
@@ -636,7 +636,7 @@
             <span class="status-pill ${car.status}">${STATUS_LABEL[car.status] || car.status}</span>
           </h3>
           <div class="car-note">${car.note ? car.note : ''}</div>
-          <div class="car-updated">Updated ${timeAgo(car.updated_at)}</div>
+          <div class="car-updated">Updated ${timeAgo(car.Updated_at)}</div>
         </div>
       </div>
     `).join('');
@@ -646,8 +646,8 @@
     const loading = document.getElementById('roster-loading');
     const errorBox = document.getElementById('roster-error');
     try{
-      const { data, error } = await supabase
-        .from('trolleys')
+      const { data, error } = await sb
+        .from('Trolleys')
         .select('*')
         .order('number', { ascending:true });
 
@@ -666,12 +666,11 @@
   loadRoster();
 
   // Live updates: re-render whenever the crew changes a status
-  supabase
+    sb
     .channel('trolleys-public')
-    .on('postgres_changes', { event:'*', schema:'public', table:'trolleys' }, loadRoster)
+    .on('postgres_changes', { event:'*', schema:'public', table:'Trolleys' }, loadRoster)
     .subscribe();
 </script>
 
 </body>
 </html>
-
