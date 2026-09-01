@@ -671,6 +671,17 @@
     .on('postgres_changes', { event:'*', schema:'public', table:'Trolleys' }, loadRoster)
     .subscribe();
 </script>
+<script>// Open modal when clicking on an image in the Fleet gallery
+  document.querySelector('.gallery').addEventListener('click', (e) => {
+    const figure = e.target.closest('figure');
+    if(!figure || !figure.dataset.carId) return;
+    
+    // Grab the car name from the caption to use as the title
+    const caption = figure.querySelector('figcaption');
+    const liveName = caption ? caption.textContent.split('—')[0].trim() : null;
+    
+    openCarModal(figure.dataset.carId, liveName);
+  });</script>
 <script src="car-bios/car-1779.js"></script>
 <script src="car-bios/car-1718.js"></script>
 <script src="car-bios/car-1945.js"></script>
