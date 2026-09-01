@@ -691,6 +691,113 @@
 <script src="car-bios/car-1811.js"></script>
 <script src="car-bios/car-1100.js"></script>
 <script src="car-bios/car-3279.js"></script>
+<div id="car-modal" class="modal-overlay" onclick="if(event.target === this) closeCarModal()">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeCarModal()">&times;</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+  <style> .modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(35, 34, 32, 0.85);
+  backdrop-filter: blur(4px);
+  display: none; align-items: center; justify-content: center;
+  z-index: 1000; padding: 20px;
+}
+.modal-card {
+  background: var(--panel);
+  border: 2px solid var(--brass);
+  border-radius: 6px;
+  max-width: 700px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  position: relative; padding: 32px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.modal-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none;
+  font-size: 32px; color: var(--iron-soft);
+  cursor: pointer; line-height: 1;
+}
+.modal-close:hover { color: var(--red); }
+.modal-header {
+  display: flex; gap: 20px;
+  margin-bottom: 24px; flex-wrap: wrap;
+}
+.modal-header img {
+  width: 100%; max-width: 260px;
+  height: 180px; object-fit: cover;
+  border-radius: 4px; border: 1px solid var(--line);
+}
+.modal-meta { flex: 1; min-width: 240px; }
+.modal-meta h2 { font-size: 26px; margin-bottom: 12px; }
+.spec-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 10px; margin-top: 12px; font-size: 13px;
+}
+.spec-item {
+  background: var(--cream); padding: 8px 12px;
+  border-radius: 3px; border: 1px solid var(--line);
+}
+.spec-label {
+  font-weight: 700; color: var(--iron-soft);
+  display: block; text-transform: uppercase;
+  font-size: 10px; letter-spacing: 0.05em;
+}</style>
+  <script>
+    function openCarModal(carId, fallbackTitle) {
+  const bio = (window.CAR_BIOS && window.CAR_BIOS[carId]) || {
+    title: fallbackTitle || "Trolley Details",
+    built: "Early 1900s",
+    builder: "Standard Car Co.",
+    origin: "Midwest Interurban Network",
+    seats: "Varies",
+    history: "Detailed restoration history for this vehicle is currently being digitized by the car barn crew."
+  };
 
+  const photoSrc = CAR_PHOTOS[carId] || 'hero-signaltower.jpg';
+
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-header">
+      <img src="${photoSrc}" alt="${bio.title}">
+      <div class="modal-meta">
+        <h2>${bio.title}</h2>
+        <div class="spec-grid">
+          <div class="spec-item"><span class="spec-label">Year Built</span>${bio.built}</div>
+          <div class="spec-item"><span class="spec-label">Manufacturer</span>${bio.builder}</div>
+          <div class="spec-item"><span class="spec-label">Original System</span>${bio.origin}</div>
+          <div class="spec-item"><span class="spec-label">Capacity</span>${bio.seats}</div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px dashed var(--line); padding-top:18px; font-size:15px; color:#3C3A35; line-height:1.6;">
+      ${bio.history}
+    </div>
+  `;
+  document.getElementById('car-modal').style.display = 'flex';
+}
+
+function closeCarModal() {
+  document.getElementById('car-modal').style.display = 'none';
+}
+
+// Click listener for Fleet Gallery photos
+document.querySelector('.gallery').addEventListener('click', (e) => {
+  const figure = e.target.closest('figure');
+  if(!figure || !figure.dataset.carId) return;
+  const caption = figure.querySelector('figcaption');
+  const liveName = caption ? caption.textContent.split('—')[0].trim() : null;
+  openCarModal(figure.dataset.carId, liveName);
+});
+
+// Click listener for Today's Roster photos
+document.getElementById('roster-grid').addEventListener('click', (e) => {
+  const card = e.target.closest('.car-card');
+  if(!card) return;
+  const carId = card.dataset.carId;
+  openCarModal(carId);
+});
+  </script>
+  
 </body>
 </html>
